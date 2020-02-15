@@ -86,10 +86,10 @@ class App extends Component {
       isSimpsons: false
     };
 
-    this.filterList = this.filterList.bind(this);
+    this.filterListMethod = this.filterListMethod.bind(this);
   } 
 
-  filterList() {
+  filterListMethod() {
     this.setState({ isSimpsons: !this.state.isSimpsons });
   }
 
@@ -98,7 +98,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <button onClick={this.filterList}>
+        <button onClick={this.filterListMethod}>
           Press to see
           {this.state.isSimpsons ? " more than Simpsons" : " Simpsons only"}
         </button>
@@ -114,7 +114,7 @@ class App extends Component {
         {/* { 
           // this.state.quotes.map((quote, index) => <Quote key={ index } { ...quote } />) // Only map
           // this.state.quotes.map((quote, index) => quote.character.includes('Simpson') ? <Quote key={ index } { ...quote } /> : null) // Only map doing the filter
-          // this.state.quotes.filter((quote) =>  quote.character.includes('Simpson')).map((quote, index) => <Quote key={ index } { ...quote } />) // Doing filter and
+          // this.state.quotes.filter((quote) =>  quote.character.includes('Simpson')).map((quote, index) => <Quote key={ index } { ...quote } />) // Doing filter and map
           // filterList.map((quote, index) => <Quote key={ index } { ...quote } />) // Doing filter(in variable) and map.
         }   */}
       </div>
