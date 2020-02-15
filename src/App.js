@@ -82,21 +82,41 @@ class App extends Component {
             "https://cdn.glitch.com/3c3ffadc-3406-4440-bb95-d40ec8fcde72%2FTroyMcClure.png?1497567511112",
           characterDirection: "Right"
         }
-      ]
+      ],
+      isSimpsons: false
     };
+
+    this.filterList = this.filterList.bind(this);
   } 
+
+  filterList() {
+    this.setState({ isSimpsons: !this.state.isSimpsons });
+  }
 
   render() { 
     let filterList = this.state.quotes.filter((quote) =>  quote.character.includes('Simpson'));
     return (
       <div className="App">
-        { 
+
+        <button onClick={this.filterList}>
+          Press to see
+          {this.state.isSimpsons ? " more than Simpsons" : " Simpsons only"}
+        </button>
+
+        {
+          this.state.isSimpsons
+            ? filterList.map((quote, index) => <Quote key={index} {...quote} />)
+            : this.state.quotes.map((quote, index) => (
+                <Quote key={index} {...quote} />
+              ))
+        }
+
+        {/* { 
           // this.state.quotes.map((quote, index) => <Quote key={ index } { ...quote } />) // Only map
           // this.state.quotes.map((quote, index) => quote.character.includes('Simpson') ? <Quote key={ index } { ...quote } /> : null) // Only map doing the filter
           // this.state.quotes.filter((quote) =>  quote.character.includes('Simpson')).map((quote, index) => <Quote key={ index } { ...quote } />) // Doing filter and
-
-          filterList.map((quote, index) => <Quote key={ index } { ...quote } />) // Doing filter(in variable) and map.
-        }  
+          // filterList.map((quote, index) => <Quote key={ index } { ...quote } />) // Doing filter(in variable) and map.
+        }   */}
       </div>
     );
   } 
